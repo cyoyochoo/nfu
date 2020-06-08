@@ -1,0 +1,1 @@
+-keep interface com.hsae.platform.nfu.router.interfaces.RouterFota

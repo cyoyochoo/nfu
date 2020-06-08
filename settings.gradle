@@ -1,0 +1,3 @@
+rootProject.name='NFU'
+include ':app'
+include ':nfu'

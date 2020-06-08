@@ -1,0 +1,22 @@
+project.afterEvaluate {
+    tasks.all { task ->
+        if (task.name.contains('ReleaseJavaWithJavac')
+                || task.name.contains('ReleaseKotlin')) {
+            def name = 'ignore'
+            if (task.name.contains('ReleaseJavaWithJavac'))
+                name = 'app'
+            task.doLast {
+                javaexec {
+                    main = '-jar'
+                    args = [
+                            'hsaeObfuscateString_V2.0.jar',
+                            name,
+                            task.outputs.files.first().path,
+                            'com.hsae.platform.nfu'
+                    ]
+                    jvmArgs '-Dfile.encoding=UTF-8'
+                }
+            }
+        }
+    }
+}

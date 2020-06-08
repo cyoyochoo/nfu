@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hsae.platform.nfu">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:usesCleartextTraffic="true">
+        <service
+            android:name=".connect.context.LinkService"
+            android:enabled="true"
+            android:exported="false"/>
+        <service
+            android:name=".upgrade.TransmittService"
+            android:exported="false"/>
+        <service
+            android:name=".upgrade.VersionService"
+            android:exported="false"/>
+        <service
+            android:name=".upgrade.DownloadService"
+            android:exported="false"/>
+
+        <receiver
+            android:name=".wrapper.TaskReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="nfu.task.offline.check" />
+                <action android:name="nfu.task.download" />
+                <action android:name="nfu.task.link.check" />
+                <action android:name="nfu.task.upgrade" />
+                <action android:name="nfu.notify.connected" />
+                <action android:name="nfu.notify.disconnected" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
